@@ -26,10 +26,6 @@ public class User {
     @Column(length = 50, nullable = false)
     private String password;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "addresses", cascade = CascadeType.ALL)
-    private Set<Address> addresses = new HashSet<>();
-
     @CreationTimestamp
     private LocalDateTime created_at;
 
@@ -40,6 +36,10 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    User(){
+
     }
 
     public int getId() {
@@ -90,9 +90,9 @@ public class User {
         this.updated_at = updated_at;
     }
 
-    public Set<Address> getAddresses() {
-        return addresses;
-    }
+//    public Set<Address> getAddresses() {
+//        return addresses;
+//    }
 
     @Override
     public String toString() {

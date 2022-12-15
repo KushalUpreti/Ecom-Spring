@@ -21,7 +21,7 @@ public class Item {
     @Column(length = 500, nullable = false)
     private String description;
 
-    @Column(scale = 10, nullable = false, precision = 2, columnDefinition = "DOUBLE(10,2)")
+    @Column(nullable = false, precision = 2)
     private double price;
 
 }

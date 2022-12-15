@@ -13,10 +13,8 @@ public class AddressController {
     @Autowired
     AddressService addressService;
 
-    @PostMapping("/user/add")
-    public String addAddress(@RequestBody Address address){
-        Address address1= addressService.saveAddress(address);
-        System.out.println(address1);
-        return "Address added";
+    @PostMapping("/address/add")
+    public Address addAddress(@RequestBody Address address){
+        return  addressService.saveAddress(address);
     }
 }

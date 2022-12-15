@@ -16,7 +16,7 @@ public class Address {
     @Column(length = 50, nullable = false)
     private String title;
 
-    @Column(length = 50, nullable = false)
+    @Column(name = "street_address", length = 50, nullable = false)
     private String streetAddress;
 
     @Column(length = 50, nullable = false)
@@ -30,6 +30,10 @@ public class Address {
         this.streetAddress = streetAddress;
         this.city = city;
         this.country = country;
+    }
+
+    Address(){
+
     }
 
     public int getId() {
