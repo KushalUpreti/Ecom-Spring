@@ -1,0 +1,46 @@
+@import "../../../assets/variables";
+
+.navbar-collapse {
+  flex-grow: 0;
+}
+
+nav {
+  background-color: $color-primary !important;
+  min-height: 4em;
+
+  .navbar-toggler {
+    background-color: white;
+  }
+}
+
+.cart_icon {
+  color: white;
+  margin-right: 10px;
+}
+
+.navbar-brand {
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.search-form {
+  margin: 10px 0;
+}
+
+.auth-btn {
+  button {
+    margin: 0 2px;
+  }
+}
+
+.second-nav {
+  //   background-color: $color-secondary;
+}
+
+@media only screen and (min-width: 992px) {
+  .search-form {
+    width: 50vw;
+    margin: 0;
+  }
+}
