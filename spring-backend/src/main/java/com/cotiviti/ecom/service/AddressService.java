@@ -1,8 +1,11 @@
 package com.cotiviti.ecom.service;
 
-import com.cotiviti.ecom.model.Address;
+import com.cotiviti.ecom.dto.AddressDTO;
+
+import java.util.List;
 
 public interface AddressService {
 
-    Address saveAddress(Address address);
+    AddressDTO saveAddress(AddressDTO address,Integer userId);
+    List<AddressDTO> getAllAddresses(Integer userId);
 }

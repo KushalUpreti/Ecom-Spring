@@ -10,9 +10,9 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private Order order;
+//    private Order order;
 
-    private Item item;
+//    private Item item;
 
     @Column(nullable = false)
     private int quantity;

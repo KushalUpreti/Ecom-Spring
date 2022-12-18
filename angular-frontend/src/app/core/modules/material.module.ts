@@ -11,6 +11,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -27,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
+    MatGridListModule,
   ],
   exports: [
     MatCardModule,
@@ -40,6 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSortModule,
     MatMenuModule,
     MatToolbarModule,
+    MatGridListModule,
     MatIconModule,
   ],
 })

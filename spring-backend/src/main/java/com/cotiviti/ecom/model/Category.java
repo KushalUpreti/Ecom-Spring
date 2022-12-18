@@ -1,6 +1,13 @@
 package com.cotiviti.ecom.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 
 @Entity
 @Table(name = "items")
@@ -11,24 +18,4 @@ public class Category {
 
     @Column(length = 50, nullable = false, unique = true)
     private String title;
-
-    public Category(String title) {
-        this.title = title;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }

@@ -1,5 +1,6 @@
 package com.cotiviti.ecom.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,5 +25,10 @@ public class TestConfig {
     public UserDetailsService userDetailsService() {
         return email -> APP_USERS.stream().filter(userDetails -> userDetails.getUsername().equals(email))
                 .findFirst().orElseThrow(() -> new UsernameNotFoundException("No user was found"));
+    }
+
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper ();
     }
 }

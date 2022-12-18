@@ -1,12 +1,12 @@
 package com.cotiviti.ecom.service;
 
-import com.cotiviti.ecom.model.Address;
-import com.cotiviti.ecom.model.User;
+import com.cotiviti.ecom.dto.UserDTO;
 
 import java.util.List;
 
 public interface UserService {
 
-     User saveUser(User user);
-     List<Address> getUserAddresses();
+    UserDTO saveUser(UserDTO user);
+    List<UserDTO> getAllUsers();
+
 }

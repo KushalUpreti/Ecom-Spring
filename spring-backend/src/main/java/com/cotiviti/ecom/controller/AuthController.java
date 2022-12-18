@@ -1,7 +1,7 @@
 package com.cotiviti.ecom.controller;
 
 import com.cotiviti.ecom.config.JwtUtils;
-import com.cotiviti.ecom.dto.AuthRequest;
+import com.cotiviti.ecom.dto.AuthRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,7 +20,7 @@ public class AuthController {
     private final JwtUtils jwtUtils;
 
     @PostMapping("/auth/login")
-    public ResponseEntity<String> authenticate(@RequestBody AuthRequest authRequest){
+    public ResponseEntity<String> authenticate(@RequestBody AuthRequestDTO authRequest){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(),authRequest.getPassword()));
         final UserDetails user = userDetailsService.loadUserByUsername(authRequest.getEmail());
         if(user!=null){
