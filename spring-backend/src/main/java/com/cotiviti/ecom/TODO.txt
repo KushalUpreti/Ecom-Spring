@@ -3,3 +3,5 @@ TODO: Uncomment jwt verification logic
 TODO: Hide nested objects in API calls https://stackoverflow.com/questions/33475222/spring-boot-jpa-json-without-nested-object-with-onetomany-relation
 TODO: Assign User and Admin Roles
 TODO: Proper HTTP stauts return from controller
+TODO: Category with all items API
+TODO: Proper HTTP Method mapping

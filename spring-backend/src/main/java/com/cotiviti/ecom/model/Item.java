@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,6 +34,9 @@ public class Item {
 
     @Column(nullable = false, precision = 2)
     private double price;
+
+    @OneToMany(mappedBy = "item")
+    private List<CartItem> cartItems;
 
     @CreationTimestamp
     private LocalDateTime created_at;

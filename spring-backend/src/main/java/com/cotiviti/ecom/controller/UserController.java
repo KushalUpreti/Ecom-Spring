@@ -1,7 +1,6 @@
 package com.cotiviti.ecom.controller;
 
 import com.cotiviti.ecom.dto.UserDTO;
-import com.cotiviti.ecom.model.User;
 import com.cotiviti.ecom.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,8 +23,8 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<UserDTO>> getAllusers(){
-        List<UserDTO> allUsers = userService.getAllUsers ();
-        return new ResponseEntity<> (allUsers, HttpStatus.OK );
+    public ResponseEntity<List<UserDTO>> getAllusers() {
+        List<UserDTO> allUsers = userService.getAllUsers();
+        return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
 }

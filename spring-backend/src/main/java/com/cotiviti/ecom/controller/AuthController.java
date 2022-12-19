@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthenticationManager authenticationManager;
-    private final   UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
     private final JwtUtils jwtUtils;
 
     @PostMapping("/auth/login")
-    public ResponseEntity<String> authenticate(@RequestBody AuthRequestDTO authRequest){
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(),authRequest.getPassword()));
+    public ResponseEntity<String> authenticate(@RequestBody AuthRequestDTO authRequest) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
         final UserDetails user = userDetailsService.loadUserByUsername(authRequest.getEmail());
-        if(user!=null){
+        if (user != null) {
             return ResponseEntity.ok(jwtUtils.generateToken(user));
         }
         return ResponseEntity.status(400).body("Something went wrong");

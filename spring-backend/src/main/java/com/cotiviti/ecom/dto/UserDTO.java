@@ -24,7 +24,7 @@ public class UserDTO {
     private String email;
 
     @NotEmpty
-    @Size(min=3, max=12, message = "Password must be more that 3 letters and less than 12 letters")
+    @Size(min = 3, max = 12, message = "Password must be more that 3 letters and less than 12 letters")
     private String password;
 
     private LocalDateTime created_at;

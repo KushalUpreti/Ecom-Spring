@@ -1,7 +1,9 @@
 package com.cotiviti.ecom.service.impl;
 
 import com.cotiviti.ecom.dto.UserDTO;
+import com.cotiviti.ecom.model.Cart;
 import com.cotiviti.ecom.model.User;
+import com.cotiviti.ecom.repository.CartRepository;
 import com.cotiviti.ecom.repository.UserRepository;
 import com.cotiviti.ecom.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final CartRepository cartRepository;
     private final ModelMapper modelMapper;
 
     @Override
@@ -25,6 +28,12 @@ public class UserServiceImpl implements UserService {
         userDTO.setUsername(username);
         User user = this.dtoToUser(userDTO);
         User savedUser = userRepository.save(user);
+
+        Cart cart = new Cart();
+        cart.setUser(user);
+        cart.setActiveSession(true);
+        cartRepository.save(cart);
+
         return userToDTO(savedUser);
     }
 

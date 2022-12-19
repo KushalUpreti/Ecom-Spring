@@ -18,7 +18,7 @@ public class ItemController {
     ItemService itemService;
 
     @GetMapping("/{categoryId}")
-    public ResponseEntity<List<ItemDTO>> getCategoryItems( @PathVariable("categoryId") Integer categoryId){
+    public ResponseEntity<List<ItemDTO>> getCategoryItems(@PathVariable("categoryId") Integer categoryId) {
         List<ItemDTO> itemDTOList = itemService.getCategoryItems(categoryId);
         return new ResponseEntity<>(itemDTOList, HttpStatus.CREATED);
     }
@@ -32,7 +32,7 @@ public class ItemController {
     }
 
     @DeleteMapping("/delete/{itemId}")
-    public ResponseEntity<String> deleteItem(@PathVariable("itemId") Integer itemId){
+    public ResponseEntity<String> deleteItem(@PathVariable("itemId") Integer itemId) {
         itemService.deleteItem(itemId);
         return new ResponseEntity<>("Item deleted", HttpStatus.GONE);
     }

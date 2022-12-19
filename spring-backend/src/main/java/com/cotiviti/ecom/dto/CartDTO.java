@@ -1,8 +1,8 @@
 package com.cotiviti.ecom.dto;
 
+import com.cotiviti.ecom.model.User;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,21 +10,17 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class ItemDTO {
+public class CartDTO {
 
     private int id;
 
-    private CategoryDTO category;
+    private User user;
 
     @NotEmpty
-    private String title;
-
-    @NotEmpty
-    @Size(max = 500, message = "Description must be 500 characters maximum")
-    private String description;
+    private boolean activeSession = false;
 
     @DecimalMin(value = "0.0")
-    private double price;
+    private double total;
 
     private LocalDateTime created_at;
 
