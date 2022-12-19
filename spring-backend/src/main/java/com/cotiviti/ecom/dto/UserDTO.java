@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
@@ -24,4 +26,8 @@ public class UserDTO {
     @NotEmpty
     @Size(min=3, max=12, message = "Password must be more that 3 letters and less than 12 letters")
     private String password;
+
+    private LocalDateTime created_at;
+
+    private LocalDateTime updated_at;
 }

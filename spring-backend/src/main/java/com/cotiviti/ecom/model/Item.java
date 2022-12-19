@@ -1,8 +1,16 @@
 package com.cotiviti.ecom.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import java.time.LocalDateTime;
 
-import java.math.BigDecimal;
+@Getter
+@Setter
+@RequiredArgsConstructor
 
 @Entity
 @Table(name = "items")
@@ -12,8 +20,9 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 50, nullable = false)
-    private int category_id;
+    @ManyToOne()
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 
     @Column(length = 50, nullable = false, unique = true)
     private String title;
@@ -24,4 +33,9 @@ public class Item {
     @Column(nullable = false, precision = 2)
     private double price;
 
+    @CreationTimestamp
+    private LocalDateTime created_at;
+
+    @UpdateTimestamp
+    private LocalDateTime updated_at;
 }

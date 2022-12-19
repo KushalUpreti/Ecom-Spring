@@ -8,4 +8,5 @@ public interface AddressService {
 
     AddressDTO saveAddress(AddressDTO address,Integer userId);
     List<AddressDTO> getAllAddresses(Integer userId);
+    void deleteAddress(Integer addressId);
 }

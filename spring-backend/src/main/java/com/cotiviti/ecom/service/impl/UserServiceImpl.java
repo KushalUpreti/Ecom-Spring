@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
         userDTO.setUsername(username);
         User user = this.dtoToUser(userDTO);
         User savedUser = userRepository.save(user);
-        return this.userToDTO(savedUser);
+        return userToDTO(savedUser);
     }
 
     @Override

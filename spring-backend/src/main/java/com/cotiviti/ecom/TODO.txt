@@ -1,0 +1,5 @@
+TODO: Add password encryption
+TODO: Uncomment jwt verification logic
+TODO: Hide nested objects in API calls https://stackoverflow.com/questions/33475222/spring-boot-jpa-json-without-nested-object-with-onetomany-relation
+TODO: Assign User and Admin Roles
+TODO: Proper HTTP stauts return from controller

@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-public class TestConfig {
+public class BeanConfig {
 
     private final static List<UserDetails> APP_USERS = Arrays.asList(
             new User("kushal@email.com", "$2a$10$cgpYX//b24sBAJp2Q1/MYO1Kw5ngv4CmZ.rmyZBEppQFJHbX.btwe",
