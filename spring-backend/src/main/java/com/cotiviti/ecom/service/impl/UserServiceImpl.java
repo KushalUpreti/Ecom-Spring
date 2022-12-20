@@ -8,6 +8,7 @@ import com.cotiviti.ecom.repository.UserRepository;
 import com.cotiviti.ecom.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,12 +21,14 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final CartRepository cartRepository;
     private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
         String email = userDTO.getEmail();
         String username = email.substring(0, email.indexOf("@"));
         userDTO.setUsername(username);
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         User user = this.dtoToUser(userDTO);
         User savedUser = userRepository.save(user);
 
@@ -41,6 +44,11 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> getAllUsers() {
         List<User> users = userRepository.findAll();
         return users.stream().map(this::userToDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+       return userRepository.findByEmail(email);
     }
 
     private User dtoToUser(UserDTO userDTO) {

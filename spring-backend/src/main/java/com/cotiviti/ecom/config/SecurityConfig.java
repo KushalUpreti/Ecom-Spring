@@ -23,10 +23,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
     private final JWTAuthFilter jwtAuthFilter;
     private final UserDetailsService userDetailsService;
-//    private final static List<UserDetails> APP_USERS = Arrays.asList(
-//            new User("kushal@email.com", "password",
-//                    Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"))
-//            ));
+    private final PasswordEncoder passwordEncoder;
 
     @Bean
     SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
@@ -34,7 +31,7 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-               .requestMatchers(new AntPathRequestMatcher("/**/auth/**"))
+//               .requestMatchers(new AntPathRequestMatcher("/**/auth/**"))
                 .requestMatchers(new AntPathRequestMatcher("/**"))
                 .permitAll()
                 .anyRequest()
@@ -52,7 +49,7 @@ public class SecurityConfig {
     public AuthenticationProvider authenticationProvider() {
         final DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
         return daoAuthenticationProvider;
     }
 
@@ -60,20 +57,4 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        return new UserDetailsService() {
-//            @Override
-//            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//                return APP_USERS.stream().filter(userDetails -> userDetails.getUsername().equals(email))
-//                        .findFirst().orElseThrow(() -> new UsernameNotFoundException("No user was found"));
-//            }
-//        };
-//    }
 }

@@ -13,15 +13,17 @@ export class AuthEffects {
     private readonly http: HttpClient
   ) {}
 
-  //   fetchAuthCredentials$ = createEffect(() =>
-  //     this.actions$.pipe(
-  //       ofType(AuthActions.fetchAuthCredentials),
-  //       switchMap(() => {
-  //         return this.http.post<Auth>(`http://localhost:3000/todos`).pipe(
-  //           switchMap((response) => [AuthActions.setAuthCredentials({}),
-  //           catchError((err: HttpErrorResponse | TimeoutError) => EMPTY)
-  //         );
-  //       })
-  //     )
-  //   );
+  fetchAuthCredentials$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.fetchAuthCredentials),
+      switchMap((action) => {
+        return this.http
+          .post<Auth>(`http://localhost:8080/auth/login`, action)
+          .pipe(
+            switchMap((response) => [AuthActions.setAuthCredentials(response)]),
+            catchError((err: HttpErrorResponse | TimeoutError) => EMPTY)
+          );
+      })
+    )
+  );
 }

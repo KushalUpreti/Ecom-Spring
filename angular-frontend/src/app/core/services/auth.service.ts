@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Auth } from 'src/app/shared/interfaces/auth.interface';
 import * as AuthActions from '../store/auth/auth.actions';

@@ -10,4 +10,7 @@ export const setAuthCredentials = createAction(
   props<Auth>()
 );
 
-export const fetchAuthCredentials = createAction('[Auth Component] Fetch Auth');
+export const fetchAuthCredentials = createAction(
+  '[Auth Component] Fetch Auth',
+  props<{ email: string; password: string }>()
+);

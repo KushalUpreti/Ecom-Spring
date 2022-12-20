@@ -1,6 +1,8 @@
 package com.cotiviti.ecom.config;
 
+import com.cotiviti.ecom.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,20 +17,17 @@ import java.util.List;
 
 @Configuration
 public class BeanConfig {
-
-    private final static List<UserDetails> APP_USERS = Arrays.asList(
-            new User("kushal@email.com", "$2a$10$cgpYX//b24sBAJp2Q1/MYO1Kw5ngv4CmZ.rmyZBEppQFJHbX.btwe",
-                    Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"))
-            ));
+    @Autowired
+    UserService userService;
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return email -> APP_USERS.stream().filter(userDetails -> userDetails.getUsername().equals(email))
-                .findFirst().orElseThrow(() -> new UsernameNotFoundException("No user was found"));
-    }
-
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
+        return new UserDetailsService() {
+            @Override
+            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+                com.cotiviti.ecom.model.User user = userService.getUserByEmail(email);
+                return new User(user.getEmail(),user.getPassword(),Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")));
+            }
+        };
     }
 }
