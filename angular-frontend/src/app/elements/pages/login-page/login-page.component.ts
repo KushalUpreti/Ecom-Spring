@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { fetchAuthCredentials } from 'src/app/core/store/auth/auth.actions';
 
@@ -10,7 +9,7 @@ import { fetchAuthCredentials } from 'src/app/core/store/auth/auth.actions';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent {
-  constructor(private readonly store: Store, private readonly router: Router) {}
+  constructor(private readonly store: Store) {}
 
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [
@@ -24,7 +23,6 @@ export class LoginPageComponent {
     this.store.dispatch(
       fetchAuthCredentials({ email: emailText, password: passwordText })
     );
-    this.router.navigate(['/']);
   }
 
   getEmailErrorMessage() {

@@ -18,6 +18,7 @@ import { MaterialModule } from './material.module';
     ItemCardComponent,
     ItemsListComponent,
     ReactiveFormsModule,
+    CommonModule,
     MaterialModule,
   ],
   providers: [],

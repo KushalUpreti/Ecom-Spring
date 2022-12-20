@@ -9,6 +9,7 @@ import { MaterialModule } from './material.module';
 import { reducers } from '../store/app.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { httpInterceptorProviders } from '../interceptors';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

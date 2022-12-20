@@ -1,5 +1,6 @@
 package com.cotiviti.ecom.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "item_id", referencedColumnName = "id")
     private Item item;

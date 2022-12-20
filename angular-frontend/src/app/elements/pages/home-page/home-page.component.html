@@ -1,5 +1,6 @@
 <app-carousel></app-carousel>
 <section class="item-section">
-  <app-items-list></app-items-list>
-  <app-items-list></app-items-list>
+  <div *ngFor="let category of categories">
+    <app-items-list [category]="category"></app-items-list>
+  </div>
 </section>

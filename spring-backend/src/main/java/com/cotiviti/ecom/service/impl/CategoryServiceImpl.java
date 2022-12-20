@@ -28,15 +28,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryDTO> getAllCategories() {
         List<Category> categories = categoryRepository.findAll();
-        return categories.stream().map(this::classToDTO).collect(Collectors.toList());
+        return categories.stream()
+                .map((cat) -> this.modelMapper.map(cat, CategoryDTO.class))
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public List<CategoryDTO> getAllCategoriesWithItems() {
-        List<Category> categories = categoryRepository.findAll();
-//        categories.
-        return null;
-    }
 
     private Category dtoToClass(CategoryDTO dto) {
         return modelMapper.map(dto, Category.class);

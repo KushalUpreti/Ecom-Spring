@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../guards/auth.guard';
+import { SessionGuard } from '../guards/session.guard';
 
 const routes: Routes = [
   {
@@ -11,6 +13,7 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('./login-page.module').then((m) => m.LoginPageModule),
+    canActivate: [SessionGuard],
   },
   {
     path: '**',

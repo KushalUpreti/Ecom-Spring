@@ -28,7 +28,7 @@ public class CategoryController {
     @GetMapping("/")
     public ResponseEntity<List<CategoryDTO>> getCategories() {
         List<CategoryDTO> categoryDTOList = categoryService.getAllCategories();
-        return new ResponseEntity<>(categoryDTOList, HttpStatus.CREATED);
+        return new ResponseEntity<>(categoryDTOList, HttpStatus.OK);
     }
 
 

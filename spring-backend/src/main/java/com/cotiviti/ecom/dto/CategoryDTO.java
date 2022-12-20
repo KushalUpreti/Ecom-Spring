@@ -1,10 +1,12 @@
 package com.cotiviti.ecom.dto;
 
+import com.cotiviti.ecom.model.Item;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,10 +20,14 @@ public class CategoryDTO {
 
     private LocalDateTime updated_at;
 
+    private List<ItemDTO> items;
+
     @Override
     public String toString() {
         return "CategoryDTO{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", items=" + items +
                 '}';
     }
 }

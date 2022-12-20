@@ -24,7 +24,7 @@ public class Category {
     @Column(length = 50, nullable = false, unique = true)
     private String title;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Item> items;
 
     @CreationTimestamp

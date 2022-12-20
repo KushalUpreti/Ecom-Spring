@@ -1,5 +1,6 @@
 package com.cotiviti.ecom.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ public class User {
     @Column(length = 50, nullable = false, unique = true)
     private String email;
 
+    @JsonIgnore
     @Column(length = 200, nullable = false)
     private String password;
 

@@ -5,12 +5,14 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { catchError, EMPTY, switchMap, TimeoutError } from 'rxjs';
 import { Auth } from 'src/app/shared/interfaces/auth.interface';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
   constructor(
     private readonly actions$: Actions,
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly router: Router
   ) {}
 
   fetchAuthCredentials$ = createEffect(() =>
@@ -20,7 +22,10 @@ export class AuthEffects {
         return this.http
           .post<Auth>(`http://localhost:8080/auth/login`, action)
           .pipe(
-            switchMap((response) => [AuthActions.setAuthCredentials(response)]),
+            switchMap((response) => {
+              this.router.navigate(['/']);
+              return [AuthActions.setAuthCredentials(response)];
+            }),
             catchError((err: HttpErrorResponse | TimeoutError) => EMPTY)
           );
       })
