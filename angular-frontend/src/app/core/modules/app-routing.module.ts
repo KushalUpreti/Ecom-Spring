@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ItemCardComponent } from 'src/app/elements/components/item-card/item-card.component';
-import { ItemsListComponent } from 'src/app/elements/components/items-list/items-list.component';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
       import('./home-page.module').then((m) => m.HomePageModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login-page.module').then((m) => m.LoginPageModule),
   },
   {
     path: '**',

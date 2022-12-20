@@ -16,13 +16,6 @@ export class AuthService {
         this.auth = auth;
       }
     });
-    setTimeout(() => {
-      this.authenticate({
-        email: 'kushal@email.com',
-        id: 1,
-        token: '2akh3h25j2h35j23242efhns',
-      });
-    }, 5000);
   }
 
   isAuthenticated(): boolean {

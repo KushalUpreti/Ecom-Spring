@@ -34,7 +34,14 @@
     <div class="collapse navbar-collapse auth-btn" id="navbarTogglerDemo02">
       <div *ngIf="!isAuthenticated()">
         <button type="button" class="btn btn-link">Signup</button>
-        <button type="button" class="btn btn-light">Login</button>
+        <!-- <button type="button" class="btn btn-light">Login</button> -->
+        <a
+          href="login"
+          class="btn btn-light active"
+          role="button"
+          aria-pressed="true"
+          >Login</a
+        >
       </div>
       <div *ngIf="isAuthenticated()">
         <button type="button" class="btn btn-link">
