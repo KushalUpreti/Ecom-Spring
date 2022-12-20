@@ -32,8 +32,15 @@
       </form>
     </div>
     <div class="collapse navbar-collapse auth-btn" id="navbarTogglerDemo02">
-      <button type="button" class="btn btn-link">Signup</button>
-      <button type="button" class="btn btn-light">Login</button>
+      <div *ngIf="!isAuthenticated()">
+        <button type="button" class="btn btn-link">Signup</button>
+        <button type="button" class="btn btn-light">Login</button>
+      </div>
+      <div *ngIf="isAuthenticated()">
+        <button type="button" class="btn btn-link">
+          {{ getAuth().email | username | titlecase }}
+        </button>
+      </div>
     </div>
   </div>
 </nav>

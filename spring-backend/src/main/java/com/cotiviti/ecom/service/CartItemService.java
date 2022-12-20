@@ -10,7 +10,9 @@ public interface CartItemService {
 
     void removeItemFromCart(Integer cartItemId);
 
-    CartItemDTO updateQuantity(CartItemDTO cartItemDTO, Integer userId);
+    CartItemDTO updateQuantity(Integer cartItemId, Integer quantity);
 
     List<CartItemDTO> getAllCartItems(Integer userId);
+
+    int getCartItemCount(Integer userId);
 }

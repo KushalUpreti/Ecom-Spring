@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-//                .requestMatchers(new AntPathRequestMatcher("/**/auth/**"))
+               .requestMatchers(new AntPathRequestMatcher("/**/auth/**"))
                 .requestMatchers(new AntPathRequestMatcher("/**"))
                 .permitAll()
                 .anyRequest()

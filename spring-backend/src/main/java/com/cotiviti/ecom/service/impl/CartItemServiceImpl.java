@@ -16,6 +16,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -49,13 +50,31 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public CartItemDTO updateQuantity(CartItemDTO cartItemDTO, Integer userId) {
-        return null;
+    public CartItemDTO updateQuantity(Integer cartItemId, Integer quantity) {
+        CartItem item = cartItemRepository.findById(cartItemId)
+                .orElseThrow(() -> new ResourceNotFoundException("CartItem", "cartItemId", cartItemId));
+        item.setQuantity(quantity);
+        CartItem saved = cartItemRepository.save(item);
+        return cartItemToDTO(saved);
     }
 
     @Override
     public List<CartItemDTO> getAllCartItems(Integer userId) {
-        return null;
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "userId", userId));
+        Cart cart = cartRepository.findByActiveSessionAndUser(true, user);
+        List<CartItem> cartItems = cart.getCartItems();
+        return cartItems.stream()
+                .map((cartItem) -> this.modelMapper.map(cartItem, CartItemDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public int getCartItemCount(Integer userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "userId", userId));
+        Cart cart = cartRepository.findByActiveSessionAndUser(true, user);
+        return (int) cartItemRepository.countByCart(cart);
     }
 
     private CartItem dtoToCartItem(CartItemDTO cartItemDTO) {

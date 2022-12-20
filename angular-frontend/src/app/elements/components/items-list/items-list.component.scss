@@ -1,2 +1,8 @@
-.item-list-wrapper {
+.card-row {
+  display: flex;
+  gap: 1em;
+}
+
+.card-container {
+  margin: 1em 0;
 }

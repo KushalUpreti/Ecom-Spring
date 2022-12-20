@@ -2,30 +2,20 @@ package com.cotiviti.ecom.controller;
 
 import com.cotiviti.ecom.dto.CartItemDTO;
 import com.cotiviti.ecom.service.CartItemService;
-import com.cotiviti.ecom.service.CartService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/cart")
 public class CartController {
-
-    @Autowired
-    CartService cartService;
-
+    //        TODO: Fix response not being sent error
     @Autowired
     CartItemService cartItemService;
-
-//    @PutMapping("/updatePrice")
-//    public ResponseEntity<CartDTO> updateCartPrice(
-//            @PathVariable("price") Double price,
-//            @PathVariable("userId") Integer userId) {
-//        CartDTO createdCartDTO = cartService.updatePrice(price, userId);
-//        return new ResponseEntity<>(createdCartDTO, HttpStatus.OK);
-//    }
 
     @PostMapping("/addItem/{itemId}/{userId}")
     public ResponseEntity<String> addItem(
@@ -33,13 +23,11 @@ public class CartController {
             @PathVariable("itemId") Integer itemId,
             @PathVariable("userId") Integer userId
     ) {
-        CartItemDTO dto = cartItemService.addItemToCart(cartItemDTO, itemId, userId);
-//        TODO: Fix response not being sent error
+        cartItemService.addItemToCart(cartItemDTO, itemId, userId);
         return new ResponseEntity<>("Item added", HttpStatus.CREATED);
-
     }
 
-    @DeleteMapping("/deleteItem/{itemId}")
+    @DeleteMapping("/deleteCartItem/{itemId}")
     public ResponseEntity<String> deleteItem(
             @PathVariable("itemId") Integer itemId
     ) {
@@ -47,5 +35,31 @@ public class CartController {
         return new ResponseEntity<>("Item deleted", HttpStatus.OK);
     }
 
+    @PutMapping("/updateCartItemQuantity/{cartItemId}/{quantity}")
+    public ResponseEntity<CartItemDTO> updateQuantity(
+            @PathVariable("cartItemId") Integer cartItemId,
+            @PathVariable("quantity") Integer quantity) {
+        CartItemDTO dto = cartItemService.updateQuantity(cartItemId, quantity);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
 
+    @GetMapping("/getCartItems/{userId}")
+//    public ResponseEntity<List<CartItemDTO>> getCartItems(
+            public ResponseEntity<String> getCartItems(
+            @PathVariable("userId") Integer userId
+    ) {
+        List<CartItemDTO> cartItemDTOS = cartItemService.getAllCartItems(userId);
+        for (CartItemDTO dto: cartItemDTOS) {
+            System.out.println(dto.getId());
+        }
+        return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
+    @GetMapping("/getCartItemCount/{userId}")
+    public ResponseEntity<Integer> getCartItemCount(
+            @PathVariable("userId") Integer userId
+    ) {
+        int cartItemCount = cartItemService.getCartItemCount(userId);
+        return new ResponseEntity<>(cartItemCount, HttpStatus.OK);
+    }
 }
