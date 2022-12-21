@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Auth } from 'src/app/shared/interfaces/auth.interface';
 import * as AuthActions from '../store/auth/auth.actions';
@@ -17,16 +16,20 @@ export class AuthService {
         this.auth = auth;
       }
     });
+    const userAuth = JSON.parse(localStorage.getItem('userAuth'));
+    if (userAuth) {
+      this.store.dispatch(AuthActions.setAuthCredentials(userAuth));
+    }
   }
 
   isAuthenticated(): boolean {
     return !!this.auth && !!this.auth.token;
   }
 
-  authenticate(auth: Auth): void {
-    this.store.dispatch(AuthActions.setAuthCredentials(auth));
-    this.auth = auth;
-  }
+  // authenticate(auth: Auth): void {
+  //   this.store.dispatch(AuthActions.setAuthCredentials(auth));
+  //   this.auth = auth;
+  // }
 
   getAuth(): Auth {
     return this.auth;

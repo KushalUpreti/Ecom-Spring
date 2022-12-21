@@ -20,7 +20,7 @@ public class CategoryDTO {
 
     private LocalDateTime updated_at;
 
-    private List<ItemDTO> items;
+    private List<Item> items;
 
     @Override
     public String toString() {

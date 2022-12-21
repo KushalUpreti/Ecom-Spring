@@ -24,6 +24,7 @@ export class AuthEffects {
           .pipe(
             switchMap((response) => {
               this.router.navigate(['/']);
+              localStorage.setItem('userAuth', JSON.stringify(response));
               return [AuthActions.setAuthCredentials(response)];
             }),
             catchError((err: HttpErrorResponse | TimeoutError) => EMPTY)

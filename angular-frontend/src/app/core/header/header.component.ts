@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Auth } from 'src/app/shared/interfaces/auth.interface';
+import { Cart } from 'src/app/shared/interfaces/cart.interface';
 import { AuthService } from '../services/auth.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,10 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly cartService: CartService
+  ) {}
 
   categories: any = [
     {
@@ -55,6 +60,10 @@ export class HeaderComponent {
 
   getAuth(): Auth {
     return this.authService.getAuth();
+  }
+
+  getCount(): number {
+    return this.cartService.getCart() ? this.cartService.getCart().count : 0;
   }
 
   isAuthenticated(): boolean {

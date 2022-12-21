@@ -1,5 +1,6 @@
 package com.cotiviti.ecom.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class Category {
     @Column(length = 50, nullable = false, unique = true)
     private String title;
 
+    @JsonIgnoreProperties("category")
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Item> items;
 

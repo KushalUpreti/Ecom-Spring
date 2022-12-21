@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { AppComponent } from '../../app.component';
-import { HeaderModule } from '../header/header.module';
+import { HeaderModule } from './header.module';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
 import { reducers } from '../store/app.reducer';

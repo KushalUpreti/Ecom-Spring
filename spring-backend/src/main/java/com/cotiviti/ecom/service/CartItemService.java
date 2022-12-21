@@ -8,7 +8,7 @@ public interface CartItemService {
 
     CartItemDTO addItemToCart(CartItemDTO cartItemDTO, Integer itemId, Integer userId);
 
-    void removeItemFromCart(Integer cartItemId);
+    int removeItemFromCart(Integer cartItemId);
 
     CartItemDTO updateQuantity(Integer cartItemId, Integer quantity);
 

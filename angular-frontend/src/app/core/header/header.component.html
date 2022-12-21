@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" [routerLink]="['/']">
       <mat-icon
-        class="cart_icon"
         aria-hidden="false"
         aria-label="Cart"
         fontIcon="shopping_cart"
@@ -63,7 +62,6 @@
       aria-label="Toggle navigation"
     >
       <mat-icon
-        class="cart_icon"
         aria-hidden="false"
         aria-label="Cart"
         fontIcon="expand_more"
@@ -95,13 +93,18 @@
       </ul>
     </div>
 
-    <a class="navbar-brand" href="/">
-      <mat-icon
-        class="cart_icon"
-        aria-hidden="false"
-        aria-label="Cart"
-        fontIcon="shopping_bag"
-      ></mat-icon>
-    </a>
+    <div class="cart-wrapper" *ngIf="isAuthenticated()">
+      <a class="navbar-brand" href="/cart">
+        <mat-icon
+          class="cart_icon"
+          aria-hidden="false"
+          aria-label="Cart"
+          fontIcon="shopping_bag"
+        ></mat-icon>
+      </a>
+      <div class="cart-count" *ngIf="getCount() > 0">
+        <h3>{{ getCount() }}</h3>
+      </div>
+    </div>
   </div>
 </div>

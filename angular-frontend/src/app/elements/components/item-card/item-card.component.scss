@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Coda&display=swap");
+
 .img-wrapper {
   height: 8em;
   margin-bottom: 4px;
@@ -14,6 +16,12 @@
 }
 
 p {
-  margin-top: 2px;
   margin-bottom: 0;
+}
+
+a {
+  font-family: "Coda", cursive;
+  font-weight: bold;
+  display: block;
+  margin-top: 2px;
 }

@@ -14,7 +14,6 @@ import com.cotiviti.ecom.service.CartItemService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +34,15 @@ public class CartItemServiceImpl implements CartItemService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "userId", userId));
         Cart cart = cartRepository.findByActiveSessionAndUser(true, user);
+        CartItem searched = cart.getCartItems().stream()
+                .filter(cartItem -> cartItem.getItem().getId() == itemId)
+                .findAny()
+                .orElse(null);
+        if(searched != null){
+            searched.setQuantity(searched.getQuantity()+1);
+            CartItem saved = cartItemRepository.save(searched);
+            return cartItemToDTO(saved);
+        }
         CartItem cartItem = dtoToCartItem(cartItemDTO);
         cartItem.setCart(cart);
         cartItem.setItem(item);
@@ -43,10 +51,12 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public void removeItemFromCart(Integer cartItemId) {
+    public int removeItemFromCart(Integer cartItemId) {
         CartItem item = cartItemRepository.findById(cartItemId)
                 .orElseThrow(() -> new ResourceNotFoundException("CartItem", "cartItemId", cartItemId));
+        int itemCount = item.getQuantity();
         cartItemRepository.delete(item);
+        return itemCount;
     }
 
     @Override

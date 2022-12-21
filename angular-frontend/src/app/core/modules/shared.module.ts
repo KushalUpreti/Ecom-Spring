@@ -2,8 +2,11 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
 import { ItemCardComponent } from 'src/app/elements/components/item-card/item-card.component';
 import { ItemsListComponent } from 'src/app/elements/components/items-list/items-list.component';
+import { CartEffects } from '../store/cart/cart.effects';
 import { MaterialModule } from './material.module';
 
 @NgModule({
@@ -13,6 +16,8 @@ import { MaterialModule } from './material.module';
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
+    RouterModule,
+    EffectsModule.forFeature([CartEffects]),
   ],
   exports: [
     ItemCardComponent,
@@ -20,6 +25,7 @@ import { MaterialModule } from './material.module';
     ReactiveFormsModule,
     CommonModule,
     MaterialModule,
+    RouterModule,
   ],
   providers: [],
 })
