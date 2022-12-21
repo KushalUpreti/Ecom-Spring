@@ -22,6 +22,10 @@ export class CartService {
     return this.cart;
   }
 
+  setCart(count: number) {
+    this.store.dispatch(CartActions.addItemToCart({ count }));
+  }
+
   addItemToRemote(itemId: number, userId: number) {
     this.store.dispatch(
       CartActions.addItemToRemote({ itemId, userId, quantity: 1 })

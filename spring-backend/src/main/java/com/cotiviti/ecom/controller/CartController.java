@@ -2,6 +2,7 @@ package com.cotiviti.ecom.controller;
 
 import com.cotiviti.ecom.dto.CartItemDTO;
 import com.cotiviti.ecom.dto.StringResponseDTO;
+import com.cotiviti.ecom.model.CartItem;
 import com.cotiviti.ecom.service.CartItemService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,24 +30,15 @@ public class CartController {
     }
 
     @DeleteMapping("/deleteCartItem/{itemId}")
-    public ResponseEntity<String> deleteItem(
+        public ResponseEntity<Integer> deleteItem(
             @PathVariable("itemId") Integer itemId
     ) {
-        cartItemService.removeItemFromCart(itemId);
-        return new ResponseEntity<>("Item deleted", HttpStatus.OK);
-    }
-
-    @PutMapping("/updateCartItemQuantity/{cartItemId}/{quantity}")
-    public ResponseEntity<CartItemDTO> updateQuantity(
-            @PathVariable("cartItemId") Integer cartItemId,
-            @PathVariable("quantity") Integer quantity) {
-        CartItemDTO dto = cartItemService.updateQuantity(cartItemId, quantity);
-        return new ResponseEntity<>(dto, HttpStatus.OK);
+        int itemQuantity = cartItemService.removeItemFromCart(itemId);
+        return new ResponseEntity<>(itemQuantity, HttpStatus.OK);
     }
 
     @GetMapping("/getCartItems/{userId}")
     public ResponseEntity<List<CartItemDTO>> getCartItems(
-//            public ResponseEntity<String> getCartItems(
             @PathVariable("userId") Integer userId
     ) {
         List<CartItemDTO> cartItemDTOS = cartItemService.getAllCartItems(userId);

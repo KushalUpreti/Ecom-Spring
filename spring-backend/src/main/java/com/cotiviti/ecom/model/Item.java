@@ -1,7 +1,6 @@
 package com.cotiviti.ecom.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +23,9 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @JsonIgnoreProperties("items")
-    @ManyToOne()
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
@@ -38,6 +38,7 @@ public class Item {
     @Column(nullable = false, precision = 2)
     private double price;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "item")
     private List<CartItem> cartItems;
 

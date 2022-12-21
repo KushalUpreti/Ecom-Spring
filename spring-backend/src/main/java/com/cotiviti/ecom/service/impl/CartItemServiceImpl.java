@@ -84,7 +84,9 @@ public class CartItemServiceImpl implements CartItemService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "userId", userId));
         Cart cart = cartRepository.findByActiveSessionAndUser(true, user);
-        return (int) cartItemRepository.countByCart(cart);
+        List<CartItem> cartItems = cart.getCartItems();
+        int sum = cartItems.stream().mapToInt(CartItem::getQuantity).sum();
+        return sum;
     }
 
     private CartItem dtoToCartItem(CartItemDTO cartItemDTO) {

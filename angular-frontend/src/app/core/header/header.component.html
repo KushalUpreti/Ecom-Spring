@@ -6,7 +6,7 @@
         aria-label="Cart"
         fontIcon="shopping_cart"
       ></mat-icon>
-      Ecom
+      <p>Ecom</p>
     </a>
 
     <button
@@ -33,7 +33,6 @@
     <div class="collapse navbar-collapse auth-btn" id="navbarTogglerDemo02">
       <div *ngIf="!isAuthenticated()">
         <button type="button" class="btn btn-link">Signup</button>
-        <!-- <button type="button" class="btn btn-light">Login</button> -->
         <a
           class="btn btn-light active"
           role="button"
@@ -46,6 +45,7 @@
         <button type="button" class="btn btn-link">
           {{ getAuth().email | username | titlecase }}
         </button>
+        <button mat-flat-button color="warn" (click)="logout()">Logout</button>
       </div>
     </div>
   </div>
@@ -94,7 +94,7 @@
     </div>
 
     <div class="cart-wrapper" *ngIf="isAuthenticated()">
-      <a class="navbar-brand" href="/cart">
+      <a class="navbar-brand" [routerLink]="['cart']">
         <mat-icon
           class="cart_icon"
           aria-hidden="false"

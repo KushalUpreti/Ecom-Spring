@@ -1,6 +1,7 @@
 package com.cotiviti.ecom.service;
 
 import com.cotiviti.ecom.dto.CartItemDTO;
+import com.cotiviti.ecom.model.CartItem;
 
 import java.util.List;
 

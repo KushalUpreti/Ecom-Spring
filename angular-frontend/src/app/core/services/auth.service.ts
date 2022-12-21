@@ -26,11 +26,6 @@ export class AuthService {
     return !!this.auth && !!this.auth.token;
   }
 
-  // authenticate(auth: Auth): void {
-  //   this.store.dispatch(AuthActions.setAuthCredentials(auth));
-  //   this.auth = auth;
-  // }
-
   getAuth(): Auth {
     return this.auth;
   }
@@ -38,5 +33,6 @@ export class AuthService {
   logout(): void {
     this.store.dispatch(AuthActions.deleteAuthCredentials());
     this.auth = null;
+    localStorage.removeItem('userAuth');
   }
 }

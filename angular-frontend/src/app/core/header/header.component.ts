@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Auth } from 'src/app/shared/interfaces/auth.interface';
 import { Cart } from 'src/app/shared/interfaces/cart.interface';
 import { AuthService } from '../services/auth.service';
@@ -9,10 +10,11 @@ import { CartService } from '../services/cart.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
-    private readonly cartService: CartService
+    private readonly cartService: CartService,
+    private readonly http: HttpClient
   ) {}
 
   categories: any = [
@@ -58,6 +60,18 @@ export class HeaderComponent {
     },
   ];
 
+  ngOnInit(): void {
+    this.http
+      .get<any>(
+        `http://localhost:8080/api/cart/getCartItemCount/${
+          this.authService.getAuth().id
+        }`
+      )
+      .subscribe((count) => {
+        this.cartService.setCart(count);
+      });
+  }
+
   getAuth(): Auth {
     return this.authService.getAuth();
   }
@@ -68,5 +82,9 @@ export class HeaderComponent {
 
   isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }

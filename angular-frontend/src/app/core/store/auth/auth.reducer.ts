@@ -2,10 +2,6 @@ import { createReducer, on } from '@ngrx/store';
 import { Auth } from 'src/app/shared/interfaces/auth.interface';
 import * as AuthActions from './auth.actions';
 
-export interface AuthState {
-  auth: Auth;
-}
-
 export const authInitialState: Auth = { id: null, token: null, email: null };
 
 export const authFeatureKey = 'authState';
@@ -14,7 +10,7 @@ export const authReducer = createReducer(
   authInitialState,
   on(AuthActions.setAuthCredentials, (state, payload) => {
     const auth = payload;
-    return { ...state, auth };
+    return { ...state, ...auth };
   }),
   on(AuthActions.deleteAuthCredentials, (state, payload) => {
     return { ...state, ...authInitialState };

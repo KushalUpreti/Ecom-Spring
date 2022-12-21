@@ -16,6 +16,12 @@ const routes: Routes = [
     canActivate: [SessionGuard],
   },
   {
+    path: 'cart',
+    loadChildren: () =>
+      import('./cart-page.module').then((m) => m.CartPageModule),
+    canActivate: [AuthGuard],
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./notfound-page.module').then((m) => m.NotfoundPageModule),

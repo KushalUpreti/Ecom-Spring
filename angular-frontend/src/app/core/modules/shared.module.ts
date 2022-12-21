@@ -4,13 +4,20 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
+import { CartItemComponent } from 'src/app/elements/components/cart-item/cart-item.component';
+import { CartItemlistComponent } from 'src/app/elements/components/cart-itemlist/cart-itemlist.component';
 import { ItemCardComponent } from 'src/app/elements/components/item-card/item-card.component';
 import { ItemsListComponent } from 'src/app/elements/components/items-list/items-list.component';
 import { CartEffects } from '../store/cart/cart.effects';
 import { MaterialModule } from './material.module';
 
 @NgModule({
-  declarations: [ItemCardComponent, ItemsListComponent],
+  declarations: [
+    ItemCardComponent,
+    ItemsListComponent,
+    CartItemComponent,
+    CartItemlistComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -26,6 +33,9 @@ import { MaterialModule } from './material.module';
     CommonModule,
     MaterialModule,
     RouterModule,
+    CartItemComponent,
+    CartItemlistComponent,
+    HttpClientModule,
   ],
   providers: [],
 })
