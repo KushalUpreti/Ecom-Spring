@@ -1,7 +1,10 @@
 <section class="cart-section">
   <h2>Cart Items</h2>
   <div class="cart-control">
-    <app-cart-itemlist [cartItems]="cartItems"></app-cart-itemlist>
+    <app-cart-itemlist
+      [removeCartItem]="removeCartItem"
+      [cartItems]="cartItems"
+    ></app-cart-itemlist>
 
     <div class="order-summary-wrapper">
       <h3>Order Summary</h3>

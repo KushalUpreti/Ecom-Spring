@@ -1,9 +1,7 @@
 package com.cotiviti.ecom.controller;
 
 import com.cotiviti.ecom.dto.CartItemDTO;
-import com.cotiviti.ecom.dto.CustomDTO;
 import com.cotiviti.ecom.dto.StringResponseDTO;
-import com.cotiviti.ecom.model.CartItem;
 import com.cotiviti.ecom.projection.CartItemProjection;
 import com.cotiviti.ecom.service.CartItemService;
 import jakarta.validation.Valid;

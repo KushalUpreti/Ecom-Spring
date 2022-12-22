@@ -10,6 +10,12 @@
     <p>
       Quantity: <strong>{{ cartItem.quantity }}</strong>
     </p>
-    <button type="button" class="btn btn-danger">Remove</button>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="onRemoveClick(cartItem.id)"
+    >
+      Remove
+    </button>
   </div>
 </div>

@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class CartItemlistComponent {
   @Input() cartItems: any = [];
+  @Input() removeCartItem: (cartItemId: number) => void;
 }

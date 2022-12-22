@@ -42,6 +42,10 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<CartItem> cartItems;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "item")
+    private List<OrderItem> orderItems;
+
     @CreationTimestamp
     private LocalDateTime created_at;
 

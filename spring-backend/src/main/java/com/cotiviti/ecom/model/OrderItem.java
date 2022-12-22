@@ -6,30 +6,29 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 
 @Entity
-@Table(name = "orders")
-public class Order {
+@Table(name = "order_items")
+public class OrderItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne()
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    private Item item;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems;
+    @ManyToOne()
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    private Order order;
 
-    @Column(nullable = false, precision = 2)
-    private double price;
+    private int quantity;
 
     @CreationTimestamp
     private LocalDateTime created_at;

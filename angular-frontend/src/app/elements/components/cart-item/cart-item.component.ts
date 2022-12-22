@@ -7,4 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class CartItemComponent {
   @Input() cartItem: any;
+  @Input() removeCartItem: (cartItemId: number) => void;
+
+  onRemoveClick(cartItemId: number) {
+    this.removeCartItem(cartItemId);
+  }
 }

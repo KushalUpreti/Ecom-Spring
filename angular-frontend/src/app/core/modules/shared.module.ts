@@ -12,12 +12,7 @@ import { CartEffects } from '../store/cart/cart.effects';
 import { MaterialModule } from './material.module';
 
 @NgModule({
-  declarations: [
-    ItemCardComponent,
-    ItemsListComponent,
-    CartItemComponent,
-    CartItemlistComponent,
-  ],
+  declarations: [ItemCardComponent, ItemsListComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -33,8 +28,6 @@ import { MaterialModule } from './material.module';
     CommonModule,
     MaterialModule,
     RouterModule,
-    CartItemComponent,
-    CartItemlistComponent,
     HttpClientModule,
     CommonModule,
   ],

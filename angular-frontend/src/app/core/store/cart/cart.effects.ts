@@ -37,10 +37,10 @@ export class CartEffects {
   deleteCartItem$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CartActions.removeItemFromRemote),
-      switchMap(({ itemId, quantity, userId }) => {
+      switchMap(({ cartItemId }) => {
         return this.http
           .delete<number>(
-            `http://localhost:8080//api/cart/deleteCartItem/${itemId}/${userId}`
+            `http://localhost:8080/api/cart/deleteCartItem/${cartItemId}`
           )
           .pipe(
             switchMap((response) => {

@@ -1,13 +1,11 @@
 package com.cotiviti.ecom.repository;
 
-import com.cotiviti.ecom.dto.CustomDTO;
 import com.cotiviti.ecom.model.CartItem;
 import com.cotiviti.ecom.projection.CartItemProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 public interface CartItemRepository extends JpaRepository<CartItem, Integer> {

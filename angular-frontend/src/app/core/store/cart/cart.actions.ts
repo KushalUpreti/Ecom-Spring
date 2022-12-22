@@ -18,5 +18,5 @@ export const removeItemFromCart = createAction(
 
 export const removeItemFromRemote = createAction(
   '[Cart Component] Remove Cart Item Remote',
-  props<CartItem>()
+  props<{ cartItemId: number }>()
 );
