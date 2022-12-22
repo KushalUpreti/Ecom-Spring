@@ -4,6 +4,7 @@ import com.cotiviti.ecom.dto.CartItemDTO;
 import com.cotiviti.ecom.dto.CustomDTO;
 import com.cotiviti.ecom.dto.StringResponseDTO;
 import com.cotiviti.ecom.model.CartItem;
+import com.cotiviti.ecom.projection.CartItemProjection;
 import com.cotiviti.ecom.service.CartItemService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +40,11 @@ public class CartController {
     }
 
     @GetMapping("/getCartItems/{userId}")
-    public ResponseEntity<List<CustomDTO>> getCartItems(
+    public ResponseEntity<List<CartItemProjection>> getCartItems(
             @PathVariable("userId") Integer userId
     ) {
-        List<CustomDTO> cartItemDTOS = cartItemService.getAllCartItems(userId);
-        return new ResponseEntity<>(cartItemDTOS, HttpStatus.OK);
+        List<CartItemProjection> cartItems = cartItemService.getAllCartItems(userId);
+        return new ResponseEntity<>(cartItems, HttpStatus.OK);
     }
 
     @GetMapping("/getCartItemCount/{userId}")

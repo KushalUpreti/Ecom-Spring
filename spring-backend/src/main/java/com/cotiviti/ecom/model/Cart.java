@@ -33,7 +33,6 @@ public class Cart {
     @Column(nullable = false, precision = 2)
     private double total;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "cart")
     private List<CartItem> cartItems;
 

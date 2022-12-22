@@ -7,6 +7,7 @@ import com.cotiviti.ecom.model.Cart;
 import com.cotiviti.ecom.model.CartItem;
 import com.cotiviti.ecom.model.Item;
 import com.cotiviti.ecom.model.User;
+import com.cotiviti.ecom.projection.CartItemProjection;
 import com.cotiviti.ecom.repository.CartItemRepository;
 import com.cotiviti.ecom.repository.CartRepository;
 import com.cotiviti.ecom.repository.ItemRepository;
@@ -72,12 +73,12 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public List<CustomDTO> getAllCartItems(Integer userId) {
+    public List<CartItemProjection> getAllCartItems(Integer userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "userId", userId));
         Cart cart = cartRepository.findByActiveSessionAndUser(true, user);
-       List list =  cartItemRepository.findByNamedParams(cart.getId());
-        return null ;
+       List<CartItemProjection> list =  cartItemRepository.findByNamedParams(cart.getId());
+        return list ;
     }
 
     @Override
