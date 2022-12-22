@@ -10,4 +10,5 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
     Cart findByActiveSessionAndUser(boolean activeSession, User user);
 
 
+
 }

@@ -18,12 +18,12 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @PostMapping("/add")
-    public ResponseEntity<CategoryDTO> addCategory(
-            @Valid @RequestBody CategoryDTO categoryDTO) {
-        CategoryDTO createdCategoryDTO = categoryService.saveCategory(categoryDTO);
-        return new ResponseEntity<>(createdCategoryDTO, HttpStatus.CREATED);
-    }
+//    @PostMapping("/add")
+//    public ResponseEntity<CategoryDTO> addCategory(
+//            @Valid @RequestBody CategoryDTO categoryDTO) {
+//        CategoryDTO createdCategoryDTO = categoryService.saveCategory(categoryDTO);
+//        return new ResponseEntity<>(createdCategoryDTO, HttpStatus.CREATED);
+//    }
 
     @GetMapping("/")
     public ResponseEntity<List<CategoryDTO>> getCategories() {

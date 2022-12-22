@@ -22,6 +22,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'add-item',
+    loadChildren: () =>
+      import('./additem-page.module').then((m) => m.AdditemPageModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'add-category',
+    loadChildren: () =>
+      import('./addcategory-page.module').then((m) => m.AddcategoryPageModule),
+    canActivate: [AuthGuard],
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./notfound-page.module').then((m) => m.NotfoundPageModule),

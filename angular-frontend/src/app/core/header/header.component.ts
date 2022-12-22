@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Auth } from 'src/app/shared/interfaces/auth.interface';
 import { Cart } from 'src/app/shared/interfaces/cart.interface';
 import { AuthService } from '../services/auth.service';
@@ -14,51 +15,11 @@ export class HeaderComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
     private readonly cartService: CartService,
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly router: Router
   ) {}
 
-  categories: any = [
-    {
-      id: 1,
-      title: 'Electronics',
-      items: [
-        {
-          id: 1,
-          title: 'Xiaomi M1',
-          price: '220',
-          imageUrl:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSazCJ5wQ2juv69gdoSzqzUTa5lq6DX_LWLpTuIVeG4fChKftcYjZ_qUGFbaxLhIrz7fL0&usqp=CAU',
-        },
-        {
-          id: 3,
-          title: 'Xiaomi M2',
-          price: '220',
-          imageUrl:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSazCJ5wQ2juv69gdoSzqzUTa5lq6DX_LWLpTuIVeG4fChKftcYjZ_qUGFbaxLhIrz7fL0&usqp=CAU',
-        },
-      ],
-    },
-    {
-      id: 1,
-      title: 'Fashion',
-      items: [
-        {
-          id: 5,
-          title: 'Air Jordan',
-          price: '999',
-          imageUrl:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSazCJ5wQ2juv69gdoSzqzUTa5lq6DX_LWLpTuIVeG4fChKftcYjZ_qUGFbaxLhIrz7fL0&usqp=CAU',
-        },
-        {
-          id: 2,
-          title: 'Trousers XL',
-          price: '300',
-          imageUrl:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSazCJ5wQ2juv69gdoSzqzUTa5lq6DX_LWLpTuIVeG4fChKftcYjZ_qUGFbaxLhIrz7fL0&usqp=CAU',
-        },
-      ],
-    },
-  ];
+  categories: any = [];
 
   ngOnInit(): void {
     this.http
@@ -69,6 +30,12 @@ export class HeaderComponent implements OnInit {
       )
       .subscribe((count) => {
         this.cartService.setCart(count);
+      });
+
+    this.http
+      .get<any>(`http://localhost:8080/api/category/`)
+      .subscribe((categories) => {
+        this.categories = categories;
       });
   }
 
@@ -86,5 +53,6 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

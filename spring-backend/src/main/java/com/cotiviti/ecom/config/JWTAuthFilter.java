@@ -30,7 +30,6 @@ public class JWTAuthFilter extends OncePerRequestFilter {
         final String jwtToken;
 
 //       if (authHeader == null || !authHeader.startsWith("Bearer")) {
-//           System.out.println(authHeader + "NO AUTH TOKEN");
 //           filterChain.doFilter(request, response);
 //           return;
 //       }

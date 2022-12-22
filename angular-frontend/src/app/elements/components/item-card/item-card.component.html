@@ -1,6 +1,10 @@
 <mat-card class="example-card">
   <div class="img-wrapper">
-    <img mat-card-image src="{{ item.imageUrl }}" alt="Item picture" />
+    <img
+      mat-card-image
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSazCJ5wQ2juv69gdoSzqzUTa5lq6DX_LWLpTuIVeG4fChKftcYjZ_qUGFbaxLhIrz7fL0&usqp=CAU"
+      alt="Item picture"
+    />
   </div>
   <mat-card-content>
     <a
@@ -15,7 +19,5 @@
     <button mat-stroked-button color="link" (click)="addToCart(item.id)">
       Add To Cart
     </button>
-
-    <!-- <button mat-button>Order</button> -->
   </mat-card-actions>
 </mat-card>

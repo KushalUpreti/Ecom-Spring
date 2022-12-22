@@ -1,6 +1,8 @@
 package com.cotiviti.ecom.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,13 +24,14 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "item_id", referencedColumnName = "id")
+    @JsonBackReference
     private Item item;
 
     @ManyToOne()
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    @JsonBackReference
     private Cart cart;
 
     private int quantity;

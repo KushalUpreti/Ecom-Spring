@@ -1,6 +1,7 @@
 package com.cotiviti.ecom.controller;
 
 import com.cotiviti.ecom.dto.CartItemDTO;
+import com.cotiviti.ecom.dto.CustomDTO;
 import com.cotiviti.ecom.dto.StringResponseDTO;
 import com.cotiviti.ecom.model.CartItem;
 import com.cotiviti.ecom.service.CartItemService;
@@ -38,10 +39,10 @@ public class CartController {
     }
 
     @GetMapping("/getCartItems/{userId}")
-    public ResponseEntity<List<CartItemDTO>> getCartItems(
+    public ResponseEntity<List<CustomDTO>> getCartItems(
             @PathVariable("userId") Integer userId
     ) {
-        List<CartItemDTO> cartItemDTOS = cartItemService.getAllCartItems(userId);
+        List<CustomDTO> cartItemDTOS = cartItemService.getAllCartItems(userId);
         return new ResponseEntity<>(cartItemDTOS, HttpStatus.OK);
     }
 

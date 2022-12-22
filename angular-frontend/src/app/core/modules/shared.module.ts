@@ -36,6 +36,7 @@ import { MaterialModule } from './material.module';
     CartItemComponent,
     CartItemlistComponent,
     HttpClientModule,
+    CommonModule,
   ],
   providers: [],
 })

@@ -2,7 +2,6 @@ package com.cotiviti.ecom.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -11,5 +10,6 @@ import lombok.Setter;
 public class AuthDTO {
     private String token;
     private String email;
+    private String role;
     private int id;
 }

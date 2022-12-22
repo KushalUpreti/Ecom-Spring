@@ -16,12 +16,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/add")
-    public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userDto) {
-        UserDTO createUserDTO = userService.saveUser(userDto);
-        return new ResponseEntity<>(createUserDTO, HttpStatus.CREATED);
-    }
-
     @GetMapping("/")
     public ResponseEntity<List<UserDTO>> getAllusers() {
         List<UserDTO> allUsers = userService.getAllUsers();

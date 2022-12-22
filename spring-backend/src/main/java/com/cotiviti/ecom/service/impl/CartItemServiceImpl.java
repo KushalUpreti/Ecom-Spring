@@ -1,6 +1,7 @@
 package com.cotiviti.ecom.service.impl;
 
 import com.cotiviti.ecom.dto.CartItemDTO;
+import com.cotiviti.ecom.dto.CustomDTO;
 import com.cotiviti.ecom.exception.ResourceNotFoundException;
 import com.cotiviti.ecom.model.Cart;
 import com.cotiviti.ecom.model.CartItem;
@@ -14,7 +15,9 @@ import com.cotiviti.ecom.service.CartItemService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,8 +41,8 @@ public class CartItemServiceImpl implements CartItemService {
                 .filter(cartItem -> cartItem.getItem().getId() == itemId)
                 .findAny()
                 .orElse(null);
-        if(searched != null){
-            searched.setQuantity(searched.getQuantity()+1);
+        if (searched != null) {
+            searched.setQuantity(searched.getQuantity() + 1);
             CartItem saved = cartItemRepository.save(searched);
             return cartItemToDTO(saved);
         }
@@ -69,14 +72,12 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public List<CartItemDTO> getAllCartItems(Integer userId) {
+    public List<CustomDTO> getAllCartItems(Integer userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "userId", userId));
         Cart cart = cartRepository.findByActiveSessionAndUser(true, user);
-        List<CartItem> cartItems = cart.getCartItems();
-        return cartItems.stream()
-                .map((cartItem) -> this.modelMapper.map(cartItem, CartItemDTO.class))
-                .collect(Collectors.toList());
+       List list =  cartItemRepository.findByNamedParams(cart.getId());
+        return null ;
     }
 
     @Override

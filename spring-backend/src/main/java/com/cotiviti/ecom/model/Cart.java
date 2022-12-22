@@ -1,5 +1,6 @@
 package com.cotiviti.ecom.model;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,7 @@ public class Cart {
     @Column(nullable = false, precision = 2)
     private double total;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "cart")
     private List<CartItem> cartItems;
 
