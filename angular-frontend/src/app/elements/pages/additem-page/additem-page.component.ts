@@ -1,8 +1,7 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { FormControl, Validators } from '@angular/forms';
-import { catchError, EMPTY, switchMap, TimeoutError } from 'rxjs';
 
 @Component({
   selector: 'app-additem-page',
@@ -38,7 +37,10 @@ export class AdditemPageComponent implements OnInit {
         price,
       })
       .subscribe((res) => {
-        alert('Called');
+        this.title.reset();
+        this.description.reset();
+        this.price.reset();
+        alert('Item added');
       });
   }
 

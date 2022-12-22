@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         User user = this.dtoToUser(userDTO);
 
-        Role roles = roleRepository.findByName("USER").get();
+        Role roles = roleRepository.findByName("ADMIN").get();
         user.setRoles(Collections.singletonList(roles));
 
         User savedUser = userRepository.save(user);

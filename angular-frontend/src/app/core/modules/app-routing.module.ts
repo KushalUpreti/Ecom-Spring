@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
+import { RoleGuard } from '../guards/role.guard';
 import { SessionGuard } from '../guards/session.guard';
 
 const routes: Routes = [
@@ -25,13 +26,13 @@ const routes: Routes = [
     path: 'add-item',
     loadChildren: () =>
       import('./additem-page.module').then((m) => m.AdditemPageModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuard],
   },
   {
     path: 'add-category',
     loadChildren: () =>
       import('./addcategory-page.module').then((m) => m.AddcategoryPageModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, RoleGuard],
   },
   {
     path: '**',

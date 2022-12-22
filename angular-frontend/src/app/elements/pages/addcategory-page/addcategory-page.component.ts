@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-addcategory-page',
@@ -9,8 +10,18 @@ import { FormControl, Validators } from '@angular/forms';
 export class AddCategoryPageComponent {
   title = new FormControl('', [Validators.required]);
 
-  addItem() {
-    let emailText = this.title.value;
+  constructor(private readonly http: HttpClient) {}
+
+  addCategory() {
+    let title = this.title.value;
+    this.http
+      .post<any>(`http://localhost:8080/api/admin/addCategory`, {
+        title,
+      })
+      .subscribe((res) => {
+        this.title.reset();
+        alert('Category added');
+      });
   }
 
   getTitleErrorMessage() {

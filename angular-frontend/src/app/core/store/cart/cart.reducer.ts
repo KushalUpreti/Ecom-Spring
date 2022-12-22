@@ -19,7 +19,7 @@ export const cartReducer = createReducer(
   }),
   on(CartActions.removeItemFromCart, (state, payload) => {
     let prevCount = state.count;
-    const newCount = prevCount - payload.count;
+    const newCount: number = prevCount - payload.count;
     return { ...state, count: newCount };
   })
 );
