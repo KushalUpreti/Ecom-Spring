@@ -1,6 +1,7 @@
 package com.cotiviti.ecom.controller;
 
 import com.cotiviti.ecom.dto.ItemDTO;
+import com.cotiviti.ecom.model.Item;
 import com.cotiviti.ecom.service.ItemService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,12 @@ public class ItemController {
     public ResponseEntity<String> deleteItem(@PathVariable("itemId") Integer itemId) {
         itemService.deleteItem(itemId);
         return new ResponseEntity<>("Item deleted", HttpStatus.GONE);
+    }
+
+    @GetMapping("getItem/{itemId}")
+    public ResponseEntity<ItemDTO> getItem(@PathVariable("itemId") Integer itemId) {
+        ItemDTO itemDTO = itemService.getItem(itemId);
+        return new ResponseEntity<>(itemDTO, HttpStatus.CREATED);
     }
 
 

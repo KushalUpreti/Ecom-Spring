@@ -32,7 +32,7 @@ public class Item {
     @Column(length = 50, nullable = false, unique = true)
     private String title;
 
-    @Column(length = 500, nullable = false)
+    @Column(length = 5000, nullable = false)
     private String description;
 
     @Column(nullable = false, precision = 2)

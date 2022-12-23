@@ -18,11 +18,4 @@ public class ModelMapperConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return (webSecurity) -> webSecurity
-//                .ignoring()
-//                .requestMatchers("/api/auth/**");
-//    }
 }

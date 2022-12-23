@@ -50,6 +50,13 @@ public class ItemServiceImpl implements ItemService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public ItemDTO getItem(Integer itemId) {
+      Item item =  itemRepository.findById(itemId)
+                .orElseThrow(() -> new ResourceNotFoundException("Item", "itemId", itemId));
+        return classToDTO(item);
+    }
+
     private Item dtoToClass(ItemDTO dto) {
         return modelMapper.map(dto, Item.class);
     }
