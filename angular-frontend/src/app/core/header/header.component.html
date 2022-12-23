@@ -83,7 +83,7 @@
             <li *ngFor="let item of category.items">
               <a
                 class="dropdown-item"
-                [routerLink]="['items']"
+                [routerLink]="['item']"
                 [queryParams]="{ id: item.id }"
                 >{{ item.title }}</a
               >

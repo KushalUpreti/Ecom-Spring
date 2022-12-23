@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { CartItemComponent } from 'src/app/elements/components/cart-item/cart-item.component';
 import { CartItemlistComponent } from 'src/app/elements/components/cart-itemlist/cart-itemlist.component';

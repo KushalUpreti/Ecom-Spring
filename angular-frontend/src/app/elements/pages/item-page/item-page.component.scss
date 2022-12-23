@@ -1,0 +1,14 @@
+section {
+  padding: 2em 3em;
+}
+
+.image-wrapper {
+  width: 40vw;
+
+  img {
+    height: 40vh;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 1em;
+  }
+}

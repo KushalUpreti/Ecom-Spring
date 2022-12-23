@@ -35,6 +35,12 @@ const routes: Routes = [
     canActivate: [AuthGuard, RoleGuard],
   },
   {
+    path: 'item',
+    loadChildren: () =>
+      import('./item-page.module').then((m) => m.ItemPageModule),
+    // canActivate: [AuthGuard, RoleGuard],
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./notfound-page.module').then((m) => m.NotfoundPageModule),
