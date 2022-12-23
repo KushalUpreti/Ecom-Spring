@@ -16,6 +16,11 @@ export const removeItemFromCart = createAction(
   props<Cart>()
 );
 
+export const resetCart = createAction(
+  '[Cart Component] Reset Cart Item',
+  props<Cart>()
+);
+
 export const removeItemFromRemote = createAction(
   '[Cart Component] Remove Cart Item Remote',
   props<{ cartItemId: number }>()

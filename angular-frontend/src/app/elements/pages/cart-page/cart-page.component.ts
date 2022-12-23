@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { removeItemFromRemote } from 'src/app/core/store/cart/cart.actions';
+import {
+  removeItemFromRemote,
+  resetCart,
+} from 'src/app/core/store/cart/cart.actions';
 
 @Component({
   selector: 'app-cart-page',
@@ -13,10 +17,12 @@ export class CartPageComponent implements OnInit {
   constructor(
     private readonly http: HttpClient,
     private readonly authService: AuthService,
-    private readonly store: Store
+    private readonly store: Store,
+    private readonly route: Router
   ) {}
 
   cartItems: any = [];
+  showModal: boolean = false;
 
   ngOnInit(): void {
     this.http
@@ -52,5 +58,21 @@ export class CartPageComponent implements OnInit {
     return sum;
   }
 
-  placeOrder(): void {}
+  accept = () => {
+    this.http
+      .post<any>(
+        `http://localhost:8080/api/order/placeOrder/${
+          this.authService.getAuth().id
+        }`,
+        {}
+      )
+      .subscribe(() => {
+        this.store.dispatch(resetCart({ count: 0 }));
+        this.route.navigate(['/']);
+      });
+  };
+
+  placeOrder = () => {
+    this.showModal = true;
+  };
 }

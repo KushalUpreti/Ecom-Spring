@@ -21,5 +21,8 @@ export const cartReducer = createReducer(
     let prevCount = state.count;
     const newCount: number = prevCount - payload.count;
     return { ...state, count: newCount };
+  }),
+  on(CartActions.resetCart, (state, payload) => {
+    return { ...state, count: 0 };
   })
 );
