@@ -1,8 +1,11 @@
 package com.cotiviti.ecom.service.impl;
 
 import com.cotiviti.ecom.dto.CartDTO;
+import com.cotiviti.ecom.exception.ResourceNotFoundException;
 import com.cotiviti.ecom.model.Cart;
+import com.cotiviti.ecom.model.User;
 import com.cotiviti.ecom.repository.CartRepository;
+import com.cotiviti.ecom.repository.UserRepository;
 import com.cotiviti.ecom.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class CartServiceImpl implements CartService {
 
     private final CartRepository cartRepository;
+    private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
     @Override
@@ -31,9 +35,11 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void terminateSession(Integer user_id) {
-//        Cart cart = cartRepository.findByActiveSession();
-//        cart.setActiveSession(false);
-//        cartRepository.save(cart);
+        User user = userRepository.findById(user_id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "userId", user_id));
+        Cart cart = cartRepository.findByActiveSessionAndUser(true,user);
+        cart.setActiveSession(false);
+        cartRepository.save(cart);
     }
 
     private Cart dtoToClass(CartDTO dto) {

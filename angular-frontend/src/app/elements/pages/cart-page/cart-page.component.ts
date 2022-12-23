@@ -51,4 +51,6 @@ export class CartPageComponent implements OnInit {
     });
     return sum;
   }
+
+  placeOrder(): void {}
 }
