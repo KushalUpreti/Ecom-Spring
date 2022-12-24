@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
+declare var bootstrap: any;
 @Component({
   selector: 'app-addcategory-page',
   templateUrl: './addcategory-page.component.html',
@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddCategoryPageComponent {
   title = new FormControl('', [Validators.required]);
+  message: string = 'Added Category';
 
   constructor(private readonly http: HttpClient) {}
 
@@ -20,7 +21,7 @@ export class AddCategoryPageComponent {
       })
       .subscribe((res) => {
         this.title.reset();
-        alert('Category added');
+        this.loadToast();
       });
   }
 
@@ -29,5 +30,11 @@ export class AddCategoryPageComponent {
       return 'You must enter a value';
     }
     return '';
+  }
+
+  loadToast(): void {
+    const toastLiveExample = document.getElementById('liveToast');
+    const toast = new bootstrap.Toast(toastLiveExample);
+    toast.show();
   }
 }

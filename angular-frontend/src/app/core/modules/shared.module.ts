@@ -8,11 +8,12 @@ import { CartItemComponent } from 'src/app/elements/components/cart-item/cart-it
 import { CartItemlistComponent } from 'src/app/elements/components/cart-itemlist/cart-itemlist.component';
 import { ItemCardComponent } from 'src/app/elements/components/item-card/item-card.component';
 import { ItemsListComponent } from 'src/app/elements/components/items-list/items-list.component';
+import { ToastComponent } from 'src/app/elements/components/toast/toast.component';
 import { CartEffects } from '../store/cart/cart.effects';
 import { MaterialModule } from './material.module';
 
 @NgModule({
-  declarations: [ItemCardComponent, ItemsListComponent],
+  declarations: [ItemCardComponent, ItemsListComponent, ToastComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -30,6 +31,7 @@ import { MaterialModule } from './material.module';
     RouterModule,
     HttpClientModule,
     CommonModule,
+    ToastComponent,
   ],
   providers: [],
 })

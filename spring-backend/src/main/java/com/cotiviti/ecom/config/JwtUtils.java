@@ -19,7 +19,7 @@ import java.util.function.Function;
 @NoArgsConstructor
 public class JwtUtils {
 
-    private final String SECRET_KEY = "secret";
+//    private final String SECRET_KEY = "secret";
     SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     public String extractUsername(String token) {

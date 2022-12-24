@@ -18,11 +18,7 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping("/")
-    public ResponseEntity<List<CategoryDTO>> getCategories() {
-        List<CategoryDTO> categoryDTOList = categoryService.getAllCategories();
-        return new ResponseEntity<>(categoryDTOList, HttpStatus.OK);
-    }
+
 
 
 }

@@ -18,12 +18,6 @@ public class ItemController {
     @Autowired
     ItemService itemService;
 
-    @GetMapping("/{categoryId}")
-    public ResponseEntity<List<ItemDTO>> getCategoryItems(@PathVariable("categoryId") Integer categoryId) {
-        List<ItemDTO> itemDTOList = itemService.getCategoryItems(categoryId);
-        return new ResponseEntity<>(itemDTOList, HttpStatus.CREATED);
-    }
-
     @PostMapping("/add/{categoryId}")
     public ResponseEntity<ItemDTO> addItem(
             @Valid @RequestBody ItemDTO itemDTO,
@@ -38,11 +32,7 @@ public class ItemController {
         return new ResponseEntity<>("Item deleted", HttpStatus.GONE);
     }
 
-    @GetMapping("getItem/{itemId}")
-    public ResponseEntity<ItemDTO> getItem(@PathVariable("itemId") Integer itemId) {
-        ItemDTO itemDTO = itemService.getItem(itemId);
-        return new ResponseEntity<>(itemDTO, HttpStatus.CREATED);
-    }
+
 
 
 }
