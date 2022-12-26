@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
+import { CarouselComponent } from 'src/app/elements/components/carousel/carousel.component';
 import { CartItemComponent } from 'src/app/elements/components/cart-item/cart-item.component';
 import { CartItemlistComponent } from 'src/app/elements/components/cart-itemlist/cart-itemlist.component';
 import { ItemCardComponent } from 'src/app/elements/components/item-card/item-card.component';
@@ -13,7 +14,12 @@ import { CartEffects } from '../store/cart/cart.effects';
 import { MaterialModule } from './material.module';
 
 @NgModule({
-  declarations: [ItemCardComponent, ItemsListComponent, ToastComponent],
+  declarations: [
+    ItemCardComponent,
+    ItemsListComponent,
+    ToastComponent,
+    CarouselComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -32,6 +38,7 @@ import { MaterialModule } from './material.module';
     HttpClientModule,
     CommonModule,
     ToastComponent,
+    CarouselComponent,
   ],
   providers: [],
 })

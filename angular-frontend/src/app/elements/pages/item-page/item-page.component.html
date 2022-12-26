@@ -1,10 +1,11 @@
-<section>
+<section class="item-section">
   <div class="image-wrapper">
-    <img
-      src="https://cdn.thewirecutter.com/wp-content/media/2022/07/laptop-under-500-2048px-acer-1.jpg"
-      class="d-block w-100"
-      alt="..."
-    />
+    <div class="item-carousel">
+      <app-carousel
+        [carouselItems]="carouselItems"
+        [showText]="showText"
+      ></app-carousel>
+    </div>
     <div class="desc-wrapper">
       <h4>{{ item && item.title }}</h4>
       <p>
@@ -13,5 +14,17 @@
       <h6>Price: Rs {{ item && item.price }}</h6>
     </div>
   </div>
-  <div class="control-wrapper"></div>
+  <div class="control-wrapper">
+    <div class="controls">
+      <div class="title-h2">
+        <h2>Title</h2>
+      </div>
+      <div class="lower-controls">
+        <div class="price-wrapper">
+          <p>Price: Rs</p>
+          <p>999</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

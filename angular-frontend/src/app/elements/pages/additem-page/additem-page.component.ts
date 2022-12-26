@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
-import { FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-additem-page',
@@ -9,9 +8,17 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./additem-page.component.scss'],
 })
 export class AdditemPageComponent implements OnInit {
-  title = new FormControl('', [Validators.required]);
-  description = new FormControl('', [Validators.required]);
-  price = new FormControl('', [Validators.min(1)]);
+  itemForm = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.min(1)]),
+  });
+
+  selectedFiles?: FileList;
+  title: string;
+  description: string;
+  price: number;
+
   categories = [];
   selected = -1;
 
@@ -19,45 +26,44 @@ export class AdditemPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>(`http://localhost:8080/api/category/`)
+      .get<any>(`http://localhost:8080/api/guest/category/`)
       .subscribe((categories) => {
         this.categories = categories;
       });
   }
 
   addItem() {
-    let title = this.title.value;
-    let description = this.description.value;
-    let price: number = +this.price.value;
+    console.log(this.selectedFiles);
 
-    this.http
-      .post<any>(`http://localhost:8080/api/admin/addItem/${this.selected}`, {
-        title,
-        description,
-        price,
-      })
-      .subscribe((res) => {
-        this.title.reset();
-        this.description.reset();
-        this.price.reset();
-        alert('Item added');
-      });
+    // this.http
+    //   .post<any>(`http://localhost:8080/api/admin/addItem/${this.selected}`, {
+    //     title: this.title,
+    //     description: this.description,
+    //     price: this.price,
+    //   })
+    //   .subscribe((res) => {
+    //     this.itemForm.reset();
+    //   });
+  }
+
+  selectFiles(event: any): void {
+    this.selectedFiles = event.target.files;
   }
 
   getTitleErrorMessage() {
-    if (this.title.hasError('required')) {
+    if (this.itemForm.get('title').hasError('required')) {
       return 'You must enter a value';
     }
     return '';
   }
   getDescErrorMessage() {
-    if (this.description.hasError('required')) {
+    if (this.itemForm.get('description').hasError('required')) {
       return 'You must enter a value';
     }
     return '';
   }
   getPriceErrorMessage() {
-    if (this.description.hasError('min')) {
+    if (this.itemForm.get('price').hasError('min')) {
       return 'Enter min price of 1';
     }
     return '';

@@ -20,7 +20,7 @@ public class AdminController {
     @Autowired
     CategoryService categoryService;
 
-    @PostMapping("/addItem/{categoryId}")
+    @PostMapping(path = "/addItem/{categoryId}" , consumes = { "multipart/form-data" })
     public ResponseEntity<ItemDTO> addItem(
             @Valid @RequestBody ItemDTO itemDTO,
             @PathVariable("categoryId") Integer categoryId) {
@@ -33,5 +33,6 @@ public class AdminController {
             @Valid @RequestBody CategoryDTO categoryDTO) {
         CategoryDTO createdCategoryDTO = categoryService.saveCategory(categoryDTO);
         return new ResponseEntity<>(createdCategoryDTO, HttpStatus.CREATED);
+
     }
 }

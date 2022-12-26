@@ -22,18 +22,20 @@ export class HeaderComponent implements OnInit {
   categories: any = [];
 
   ngOnInit(): void {
-    this.http
-      .get<any>(
-        `http://localhost:8080/api/cart/getCartItemCount/${
-          this.authService.getAuth().id
-        }`
-      )
-      .subscribe((count) => {
-        this.cartService.setCart(count);
-      });
+    if (this.authService.getAuth()) {
+      this.http
+        .get<any>(
+          `http://localhost:8080/api/cart/getCartItemCount/${
+            this.authService.getAuth().id
+          }`
+        )
+        .subscribe((count) => {
+          this.cartService.setCart(count);
+        });
+    }
 
     this.http
-      .get<any>(`http://localhost:8080/api/category/`)
+      .get<any>(`http://localhost:8080/api/guest/category/`)
       .subscribe((categories) => {
         this.categories = categories;
       });
